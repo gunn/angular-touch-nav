@@ -1,6 +1,6 @@
 /**
  * angular-touch-nav
- * @version v0.2.2 - 2013-08-22
+ * @version v0.2.2 - 2013-08-30
  * @link https://github.com/mgcrea/angular-touch-nav
  * @author Olivier Louvignes <olivier@mg-crea.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -151,8 +151,8 @@
               }
               var w3cAnimationEvent = 'animationend';
               var w3cTransitionEvent = 'transitionend';
-              var vendorAnimationEvent = $sniffer.vendorPrefix + 'AnimationEnd';
-              var vendorTransitionEvent = $sniffer.vendorPrefix + 'TransitionEnd';
+              var vendorAnimationEvent = $sniffer.vendorPrefix.toLowerCase() + 'AnimationEnd';
+              var vendorTransitionEvent = $sniffer.vendorPrefix.toLowerCase() + 'TransitionEnd';
               var events = [
                   w3cAnimationEvent,
                   vendorAnimationEvent,
@@ -164,6 +164,7 @@
                 $timeout(done, 0, false);
               };
               element.on(events, callback);
+              $timeout(callback, duration * 1000 + 50, false);
             }
             function onEnd(cancelled) {
               element.removeClass(activeClassName);
